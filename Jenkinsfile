@@ -7,9 +7,27 @@ pipeline {
       }
     }
 
-    stage('') {
-      steps {
-        echo 'testing is in progress'
+    stage('Testing') {
+      parallel {
+        stage('Testing') {
+          steps {
+            echo 'testing is in progress'
+            bat 'mvn test'
+          }
+        }
+
+        stage('API testing') {
+          steps {
+            echo 'API'
+          }
+        }
+
+        stage('Performance testing') {
+          steps {
+            echo 'Performance'
+          }
+        }
+
       }
     }
 
